@@ -1,5 +1,3 @@
-import os
-
 from sender_stand_request import (post_new_user,
                                   post_new_kit)
 from data import kit_body
