@@ -1,9 +1,11 @@
+import pytest
 import requests
 import configuration
 import data
 import os
 
 
+@pytest.fixture(scope='session', autouse=False)
 def post_new_user():
     """
     Функция для создания нового тестового клиента с уникальными данными.
@@ -13,7 +15,8 @@ def post_new_user():
     """
     result = (requests.post(configuration.BASE_URL + configuration.CREATE_USER_PATH,
                             json=data.user_data).json())
-    os.environ["USER_TOKEN"] = "Authorization: Bearer " + result['authToken']
+    os.environ["USER_TOKEN"] = "Bearer " + result['authToken']
+    data.headers = dict({"Authorization": os.getenv("USER_TOKEN")})
 
 
 def post_new_kit(kit_body) -> requests.Response:
