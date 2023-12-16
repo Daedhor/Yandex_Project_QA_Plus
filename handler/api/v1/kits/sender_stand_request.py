@@ -4,7 +4,7 @@ import configuration
 import data
 
 
-@pytest.fixture(scope='session', autouse=False)
+@pytest.fixture(scope='session', autouse=True)
 def post_new_user():
     """
     Функция для создания нового тестового клиента с уникальными данными.

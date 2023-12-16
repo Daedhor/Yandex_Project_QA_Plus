@@ -41,7 +41,7 @@ def negative_assert(kit_name: str) -> None:
     assert kit_response.json()["message"] == 'Не все необходимые параметры были переданы'
 
 
-def test_kit_1_letter_in_name_get_success_response(post_new_user) -> None:
+def test_kit_1_letter_in_name_get_success_response() -> None:
     """
     Тест 1. Успешное создание набора
 
