@@ -74,3 +74,48 @@ def test_kit_0_letter_in_name_get_failed_response() -> None:
     :return: None
     """
     positive_assert(kit_name="")
+
+
+def test_kit_512_letters_in_name_get_failed_response() -> None:
+    """
+    Тест 4. Не успешное создание набора
+
+    Параметр name состоит из 512 символов
+    :return: None
+    """
+    positive_assert(kit_name="Abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
+                             "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
+                             "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdAbcdabcd"
+                             "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
+                             "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
+                             "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcD")
+
+
+def test_kit_english_letters_in_name_get_success_response() -> None:
+    """
+    Тест 5. Успешное создание набора
+
+    Параметр name состоит из латинских символов
+    :return: None
+    """
+    positive_assert(kit_name="QWErty")
+
+
+def test_kit_russian_letters_in_name_get_success_response() -> None:
+    """
+    Тест 6. Успешное создание набора
+
+    Параметр name состоит из кириллических символов
+    :return: None
+    """
+    positive_assert(kit_name="Мария")
+
+
+def test_kit_special_symbols_in_name_get_success_response() -> None:
+    """
+    Тест 6. Успешное создание набора
+
+    Параметр name состоит из кириллических символов
+    :return: None
+    """
+    positive_assert(kit_name="№%@")
