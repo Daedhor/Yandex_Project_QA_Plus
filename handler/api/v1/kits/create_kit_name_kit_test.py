@@ -154,7 +154,7 @@ def test_kit_with_empty_dict_get_failed_response() -> None:
     assert kit_response.json()["message"] == 'Не все необходимые параметры были переданы'
 
 
-def test_kit_numbers_in_name_get_failed_response() -> None:
+def test_kit_integer_in_name_get_failed_response() -> None:
     """
     Тест 11. Не успешное создание набора
 
