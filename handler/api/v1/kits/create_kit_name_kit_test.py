@@ -3,7 +3,7 @@ from sender_stand_request import (post_new_user,
 from data import kit_body
 
 
-def get_kit_body(kit_name):
+def get_kit_body(kit_name: str) -> dict:
     """
     Функция для изменения значения ключа 'name'
     :param kit_name:
@@ -73,7 +73,7 @@ def test_kit_0_letter_in_name_get_failed_response() -> None:
     Параметр name состоит из пустой строки
     :return: None
     """
-    positive_assert(kit_name="")
+    negative_assert(kit_name="")
 
 
 def test_kit_512_letters_in_name_get_failed_response() -> None:
@@ -83,7 +83,7 @@ def test_kit_512_letters_in_name_get_failed_response() -> None:
     Параметр name состоит из 512 символов
     :return: None
     """
-    positive_assert(kit_name="Abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
+    negative_assert(kit_name="Abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
                              "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
                              "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdAbcdabcd"
                              "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
@@ -113,9 +113,52 @@ def test_kit_russian_letters_in_name_get_success_response() -> None:
 
 def test_kit_special_symbols_in_name_get_success_response() -> None:
     """
-    Тест 6. Успешное создание набора
+    Тест 7. Успешное создание набора
 
-    Параметр name состоит из кириллических символов
+    Параметр name состоит из специальных символов
     :return: None
     """
     positive_assert(kit_name="№%@")
+
+
+def test_kit_has_spaces_in_name_get_success_response() -> None:
+    """
+    Тест 8. Успешное создание набора
+
+    Параметр name содержит пробелы
+    :return: None
+    """
+    positive_assert(kit_name="Человек и КО ")
+
+
+def test_kit_numbers_in_name_get_success_response() -> None:
+    """
+    Тест 9. Успешное создание набора
+
+    Параметр name состоит из строки содержащую цифры
+    :return: None
+    """
+    positive_assert(kit_name="123")
+
+
+def test_kit_with_empty_dict_get_failed_response() -> None:
+    """
+    Тест 10. Не успешное создание набора
+
+    Передаем в body пустой словарь
+    :return: None
+    """
+    request_body = dict()
+    kit_response = post_new_kit(request_body)
+    assert kit_response.status_code == 400
+    assert kit_response.json()["message"] == 'Не все необходимые параметры были переданы'
+
+
+def test_kit_numbers_in_name_get_failed_response() -> None:
+    """
+    Тест 11. Не успешное создание набора
+
+    Параметр name является типом integer
+    :return: None
+    """
+    negative_assert(kit_name=123)

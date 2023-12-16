@@ -3,7 +3,10 @@ import requests
 import configuration
 import data
 
-
+"""
+Ниже описана фикстура, необходимая для автоматического создания пользователя и 
+сохранения его токена перед выполнением тест-кейсов
+"""
 @pytest.fixture(scope='session', autouse=True)
 def post_new_user():
     """
