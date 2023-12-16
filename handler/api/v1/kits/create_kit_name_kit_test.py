@@ -1,3 +1,4 @@
+# Не используемую фукнцию post_new_user не удалять из импорта.
 from sender_stand_request import (post_new_user,
                                   post_new_kit)
 from data import kit_body
@@ -5,7 +6,7 @@ from data import kit_body
 
 def get_kit_body(kit_name: str) -> dict:
     """
-    Функция для изменения значения ключа 'name'
+    Функция для изменения значения ключа 'name' без изменения исходного словаря
     :param kit_name:
     :return: dict
     """
